@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/1_accounts.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1705317462621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705317657149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,15 @@\n const {ethers} = require(\"ethers\");\n \n+const INFURA_ID=\"\";\n+\n+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+\n+const address = \"\";\n+\n+const main = async ()=>{\n+     const balance = await provider.getBalance(address);\n+\n+     console.log(`\\nETH balance of ${balance}---> ${ethers.utils.formatEther(balance)}\\n`);\n+}\n+\n+main();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705317664201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const INFURA_ID=\"\";\n \n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n-const address = \"\";\n+const address = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n const main = async ()=>{\n      const balance = await provider.getBalance(address);\n \n"
+                },
+                {
+                    "date": 1705317712600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const {ethers} = require(\"ethers\");\n \n-const INFURA_ID=\"\";\n+const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const address = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n"
+                },
+                {
+                    "date": 1705317746727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n-const address = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+const address = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n \n const main = async ()=>{\n      const balance = await provider.getBalance(address);\n \n"
+                },
+                {
+                    "date": 1705318201690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const {ethers} = require(\"ethers\");\n \n const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.BrowserProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const address = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n \n const main = async ()=>{\n"
+                }
+            ],
+            "date": 1705317462621,
+            "name": "Commit-0",
+            "content": "const {ethers} = require(\"ethers\");\n\n"
+        }
+    ]
+}
