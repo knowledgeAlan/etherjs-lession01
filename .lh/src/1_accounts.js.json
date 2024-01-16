@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1705317462621,
@@ -32,6 +32,10 @@
                 {
                     "date": 1705400029003,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const {ethers} = require(\"ethers\");\n \n const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.BrowserProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const address = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n \n const main = async ()=>{\n"
+                },
+                {
+                    "date": 1705404226157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,48 @@\n-const {ethers} = require(\"ethers\");\n+// const {ethers} = require(\"ethers\");\n \n-const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+// const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n+\n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n-const address = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n+// const provider = new ethers.BrowserProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n-const main = async ()=>{\n-     const balance = await provider.getBalance(address);\n \n\\ No newline at end of file\n-     console.log(`\\nETH balance of ${balance}---> ${ethers.utils.formatEther(balance)}\\n`);\n-}\n+// const address = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n \n-main();\n+// const main = async ()=>{\n+//      const balance = await provider.getBalance(address);\n+\n+//      console.log(`\\nETH balance of ${balance}---> ${ethers.utils.formatEther(balance)}\\n`);\n+// }\n+\n+// main();\n+\n+\n+const { ethers } = require(\"ethers\");\n+\n+    async function main() {\n+      // Configuring the connection to an Ethereum node\n+      const network = \"Goerli\";\n+      const provider = new ethers.providers.InfuraProvider(\n+        network,\n+        \"6a10c6a6a3b44e1e8f2c4671e7a34319\"\n+      );\n+      // Creating a signing account from a private key\n+      const signer = new ethers.Wallet(\"5f08a4cda12c46e897c618c3f56429cf\", provider);\n+\n+      // Creating and sending the transaction object\n+      const tx = await signer.sendTransaction({\n+        to: \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\",\n+        value: ethers.utils.parseUnits(\"0.001\", \"ether\"),\n+      });\n+      console.log(\"Mining transaction...\");\n+      console.log(`https://${network}.etherscan.io/tx/${tx.hash}`);\n+      // Waiting for the transaction to be mined\n+      const receipt = await tx.wait();\n+      // The transaction is now on chain!\n+      console.log(`Mined in block ${receipt.blockNumber}`);\n+    }\n+\n+//     require(\"dotenv\").config();\n+    main();\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1705317462621,
