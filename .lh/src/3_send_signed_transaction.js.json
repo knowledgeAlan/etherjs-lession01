@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/3_send_signed_transaction.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1705401550839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705402068419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n const {ethers} = require(\"ethers\");\n \n const INFURA_ID =\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n\\ No newline at end of file\n+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+\n+const account1 = \"account1\";\n+const account2 = \"account2\";\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402252758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,18 @@\n \n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const account1 = \"account1\";\n-const account2 = \"account2\";\n\\ No newline at end of file\n+const account2 = \"account2\";\n+\n+const privateKey1 = \"\";\n+const wallet = new ethers.wallet(privateKey1,provider);\n+\n+\n+const main = async ()=>{\n+\n+    const senderBalanceBefore = await provider.getBalance(account1);\n+    const receiverBalanceBefore = await provider.getBalance(account2);\n+\n+    console.log(`senderBalanceBefore`);\n+    console.log(`receiverBalanceBefore`);\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402318738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,7 @@\n \n     const senderBalanceBefore = await provider.getBalance(account1);\n     const receiverBalanceBefore = await provider.getBalance(account2);\n \n-    console.log(`senderBalanceBefore`);\n+    console.log(`\\n Sender balance before :${ethers.utils.formatEther(senderBalanceBefore)}`);\n     console.log(`receiverBalanceBefore`);\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402397140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,6 +16,6 @@\n     const senderBalanceBefore = await provider.getBalance(account1);\n     const receiverBalanceBefore = await provider.getBalance(account2);\n \n     console.log(`\\n Sender balance before :${ethers.utils.formatEther(senderBalanceBefore)}`);\n-    console.log(`receiverBalanceBefore`);\n+    console.log(`Reciever balance before: ${ethers.utils.formatEther(receiverBalanceBefore)}\\n `);\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402459124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,5 +17,13 @@\n     const receiverBalanceBefore = await provider.getBalance(account2);\n \n     console.log(`\\n Sender balance before :${ethers.utils.formatEther(senderBalanceBefore)}`);\n     console.log(`Reciever balance before: ${ethers.utils.formatEther(receiverBalanceBefore)}\\n `);\n+\n+\n+\n+\n+    const tx = await wallet.sendTransaction({\n+            to:account2,\n+            value: ethers.utils.parseEther(\"0.25\")\n+    });\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402479258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,5 +25,10 @@\n     const tx = await wallet.sendTransaction({\n             to:account2,\n             value: ethers.utils.parseEther(\"0.25\")\n     });\n+\n+\n+    await tx.wait();\n+\n+    \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402491307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,6 +29,8 @@\n \n \n     await tx.wait();\n \n+    console.log(tx);\n+\n     \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402510795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,37 @@\n+const {ethers} = require(\"ethers\");\n+\n+const INFURA_ID =\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+\n+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+\n+const account1 = \"account1\";\n+const account2 = \"account2\";\n+\n+const privateKey1 = \"\";\n+const wallet = new ethers.wallet(privateKey1,provider);\n+\n+\n+const main = async ()=>{\n+\n+    const senderBalanceBefore = await provider.getBalance(account1);\n+    const receiverBalanceBefore = await provider.getBalance(account2);\n+\n+    console.log(`\\n Sender balance before :${ethers.utils.formatEther(senderBalanceBefore)}`);\n+    console.log(`Reciever balance before: ${ethers.utils.formatEther(receiverBalanceBefore)}\\n `);\n+\n+\n+\n+\n+    const tx = await wallet.sendTransaction({\n+            to:account2,\n+            value: ethers.utils.parseEther(\"0.25\")\n+    });\n+\n+\n+    await tx.wait();\n+\n+    console.log(tx);\n+\n+    const senderBalanceAfter = await provider.getBalance(account1);\n+    \n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402530422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,42 +32,8 @@\n \n     console.log(tx);\n \n     const senderBalanceAfter = await provider.getBalance(account1);\n-    \n-}\n-const {ethers} = require(\"ethers\");\n+    const recieverBalanceAfter = await provider.getBalance(account2);\n \n-const INFURA_ID =\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n-\n-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n-\n-const account1 = \"account1\";\n-const account2 = \"account2\";\n-\n-const privateKey1 = \"\";\n-const wallet = new ethers.wallet(privateKey1,provider);\n-\n-\n-const main = async ()=>{\n-\n-    const senderBalanceBefore = await provider.getBalance(account1);\n-    const receiverBalanceBefore = await provider.getBalance(account2);\n-\n-    console.log(`\\n Sender balance before :${ethers.utils.formatEther(senderBalanceBefore)}`);\n-    console.log(`Reciever balance before: ${ethers.utils.formatEther(receiverBalanceBefore)}\\n `);\n-\n-\n-\n-\n-    const tx = await wallet.sendTransaction({\n-            to:account2,\n-            value: ethers.utils.parseEther(\"0.25\")\n-    });\n-\n-\n-    await tx.wait();\n-\n-    console.log(tx);\n-\n     \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705402735504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,6 +34,9 @@\n \n     const senderBalanceAfter = await provider.getBalance(account1);\n     const recieverBalanceAfter = await provider.getBalance(account2);\n \n-    \n+\n+    console.log(`\\n Sender balance after : ${ethers.utils.formatEther(senderBalanceAfter)}`);\n+    console.log(`Reciever balance after : ${ethers.utils.formatEther(recieverBalanceAfter)} \\n`);\n+\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1705401550839,
+            "name": "Commit-0",
+            "content": "const {ethers} = require(\"ethers\");\n\nconst INFURA_ID =\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n\nconst provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);"
+        }
+    ]
+}

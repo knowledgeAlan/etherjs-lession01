@@ -1,0 +1,98 @@
+{
+    "sourceFile": "src/2_read_smart_contract.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 20,
+            "patches": [
+                {
+                    "date": 1705400148605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705400205666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,4 @@\n const {ethers}  = require(\"ethers\");\n+\n+const INFURA_ID=\"\";\n+const provider = new ethers.Provider.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705400518320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,17 @@\n const {ethers}  = require(\"ethers\");\n \n const INFURA_ID=\"\";\n-const provider = new ethers.Provider.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n\\ No newline at end of file\n+const provider = new ethers.Provider.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+\n+const ERC20_ABI =[\n+    \"function name() view returns (string)\",\n+    \"function symbol() view returns (string)\",\n+    \"function totalSupply() view returns (uint256)\",\n+    \"function balanceOf(address) view returns (uint)\",\n+];\n+\n+const address = \"0x6B175474E89094C44Da98b954EedeAC495271d0F\";\n+\n+const contract = new ethers.Contract(address,ERC20_ABI,provider);\n+\n+\n"
+                },
+                {
+                    "date": 1705400545391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,9 @@\n const address = \"0x6B175474E89094C44Da98b954EedeAC495271d0F\";\n \n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n+const main = async ()={\n \n+    const name =  await contract.name();\n+    \n+}\n"
+                },
+                {
+                    "date": 1705400551662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,7 @@\n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n const main = async ()={\n \n-    const name =  await contract.name();\n-    \n+    const name1 =  await contract.name();\n+\n }\n"
+                },
+                {
+                    "date": 1705400562840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,6 +16,7 @@\n \n const main = async ()={\n \n     const name1 =  await contract.name();\n+    const symbol  = await contract.symbol();\n \n }\n"
+                },
+                {
+                    "date": 1705400571015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,9 @@\n \n const main = async ()={\n \n     const name1 =  await contract.name();\n-    const symbol  = await contract.symbol();\n+    const symbol1  = await contract.symbol();\n+    \n \n+\n }\n"
+                },
+                {
+                    "date": 1705400580841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n const main = async ()={\n \n     const name1 =  await contract.name();\n     const symbol1  = await contract.symbol();\n-    \n+    const totalSupply1 = await contract.totalSupply();\n \n \n }\n"
+                },
+                {
+                    "date": 1705400696677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,13 @@\n     const name1 =  await contract.name();\n     const symbol1  = await contract.symbol();\n     const totalSupply1 = await contract.totalSupply();\n \n+    console.log(`\\n Reading from ${address}\\n`);\n+    console.log(`\\n Symbol: ${symbol1}`);\n+    console.log(`\\n TotalSupply: ${totalSupply1}`);\n+ \n \n+\n+\n+\n }\n"
+                },
+                {
+                    "date": 1705400760898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,4 +28,6 @@\n \n \n \n }\n+\n+main();\n"
+                },
+                {
+                    "date": 1705400783207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const {ethers}  = require(\"ethers\");\n \n-const INFURA_ID=\"\";\n+const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n const provider = new ethers.Provider.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const ERC20_ABI =[\n     \"function name() view returns (string)\",\n"
+                },
+                {
+                    "date": 1705400806096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,14 +16,14 @@\n \n const main = async ()={\n \n     const name1 =  await contract.name();\n-    const symbol1  = await contract.symbol();\n-    const totalSupply1 = await contract.totalSupply();\n+    // const symbol1  = await contract.symbol();\n+    // const totalSupply1 = await contract.totalSupply();\n \n-    console.log(`\\n Reading from ${address}\\n`);\n-    console.log(`\\n Symbol: ${symbol1}`);\n-    console.log(`\\n TotalSupply: ${totalSupply1}`);\n+    // console.log(`\\n Reading from ${address}\\n`);\n+    // console.log(`\\n Symbol: ${symbol1}`);\n+    // console.log(`\\n TotalSupply: ${totalSupply1}`);\n  \n \n \n \n"
+                },
+                {
+                    "date": 1705400821483,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,17 +13,17 @@\n const address = \"0x6B175474E89094C44Da98b954EedeAC495271d0F\";\n \n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n-const main = async ()={\n+const main = async ()=>{\n \n     const name1 =  await contract.name();\n-    // const symbol1  = await contract.symbol();\n-    // const totalSupply1 = await contract.totalSupply();\n+    const symbol1  = await contract.symbol();\n+    const totalSupply1 = await contract.totalSupply();\n \n-    // console.log(`\\n Reading from ${address}\\n`);\n-    // console.log(`\\n Symbol: ${symbol1}`);\n-    // console.log(`\\n TotalSupply: ${totalSupply1}`);\n+    console.log(`\\n Reading from ${address}\\n`);\n+    console.log(`\\n Symbol: ${symbol1}`);\n+    console.log(`\\n TotalSupply: ${totalSupply1}`);\n  \n \n \n \n"
+                },
+                {
+                    "date": 1705400853631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n const {ethers}  = require(\"ethers\");\n \n const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n-const provider = new ethers.Provider.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const ERC20_ABI =[\n     \"function name() view returns (string)\",\n     \"function symbol() view returns (string)\",\n"
+                },
+                {
+                    "date": 1705400869827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,15 +15,15 @@\n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n const main = async ()=>{\n \n-    const name1 =  await contract.name();\n-    const symbol1  = await contract.symbol();\n-    const totalSupply1 = await contract.totalSupply();\n+    const name =  await contract.name();\n+    const symbol  = await contract.symbol();\n+    const totalSupply = await contract.totalSupply();\n \n     console.log(`\\n Reading from ${address}\\n`);\n-    console.log(`\\n Symbol: ${symbol1}`);\n-    console.log(`\\n TotalSupply: ${totalSupply1}`);\n+    console.log(`\\n Symbol: ${symbol}`);\n+    console.log(`\\n TotalSupply: ${totalSupply}`);\n  \n \n \n \n"
+                },
+                {
+                    "date": 1705400910226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,34 @@\n+const {ethers}  = require(\"ethers\");\n+\n+const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+\n+const ERC20_ABI =[\n+    \"function name() view returns (string)\",\n+    \"function symbol() view returns (string)\",\n+    \"function totalSupply() view returns (uint256)\",\n+    \"function balanceOf(address) view returns (uint)\",\n+];\n+\n+const address = \"0x6B175474E89094C44Da98b954EedeAC495271d0F\";\n+\n+const contract = new ethers.Contract(address,ERC20_ABI,provider);\n+\n+const main = async ()=>{\n+\n+    const name =  await contract.name();\n+    const symbol  = await contract.symbol();\n+    const totalSupply = await contract.totalSupply();\n+\n+    console.log(`\\n Reading from ${address}\\n`);\n+    console.log(`\\n Name: ${name}`);\n+    console.log(`\\n Symbol: ${symbol}`);\n+    console.log(`\\n TotalSupply: ${totalSupply}`);\n+ \n+\n+\n+\n+\n+}\n+\n+main();\n"
+                },
+                {
+                    "date": 1705401004059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,43 +25,11 @@\n     console.log(`\\n Symbol: ${symbol}`);\n     console.log(`\\n TotalSupply: ${totalSupply}`);\n  \n \n+    const balance = await contract.balance(\"0x6c6Bc977E13Df9b0de53b251522280BB72383700\");\n+    console.log(`\\n Balance Returned: ${balance}`);\n+    console.log(`\\n Balance Formatted: ${ethers.utils.formatBalance(balance)}`);}\n \n-\n-\n }\n \n main();\n-const {ethers}  = require(\"ethers\");\n-\n-const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n-\n-const ERC20_ABI =[\n-    \"function name() view returns (string)\",\n-    \"function symbol() view returns (string)\",\n-    \"function totalSupply() view returns (uint256)\",\n-    \"function balanceOf(address) view returns (uint)\",\n-];\n-\n-const address = \"0x6B175474E89094C44Da98b954EedeAC495271d0F\";\n-\n-const contract = new ethers.Contract(address,ERC20_ABI,provider);\n-\n-const main = async ()=>{\n-\n-    const name =  await contract.name();\n-    const symbol  = await contract.symbol();\n-    const totalSupply = await contract.totalSupply();\n-\n-    console.log(`\\n Reading from ${address}\\n`);\n-    console.log(`\\n Symbol: ${symbol}`);\n-    console.log(`\\n TotalSupply: ${totalSupply}`);\n- \n-\n-\n-\n-\n-}\n-\n-main();\n"
+                },
+                {
+                    "date": 1705401011360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n  \n \n     const balance = await contract.balance(\"0x6c6Bc977E13Df9b0de53b251522280BB72383700\");\n     console.log(`\\n Balance Returned: ${balance}`);\n-    console.log(`\\n Balance Formatted: ${ethers.utils.formatBalance(balance)}`);}\n+    console.log(`\\n Balance Formatted: ${ethers.utils.formatBalance(balance)}`);\n \n }\n \n main();\n"
+                },
+                {
+                    "date": 1705401180534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n  \n \n     const balance = await contract.balance(\"0x6c6Bc977E13Df9b0de53b251522280BB72383700\");\n     console.log(`\\n Balance Returned: ${balance}`);\n-    console.log(`\\n Balance Formatted: ${ethers.utils.formatBalance(balance)}`);\n+    console.log(`\\n Balance Formatted: ${ethers.utils.formatEtherbalance)}`);\n \n }\n \n main();\n"
+                },
+                {
+                    "date": 1705401198744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,11 @@\n     console.log(`\\n Symbol: ${symbol}`);\n     console.log(`\\n TotalSupply: ${totalSupply}`);\n  \n \n-    const balance = await contract.balance(\"0x6c6Bc977E13Df9b0de53b251522280BB72383700\");\n+    const balance = await contract.balanceOf(\"0x6c6Bc977E13Df9b0de53b251522280BB72383700\");\n     console.log(`\\n Balance Returned: ${balance}`);\n-    console.log(`\\n Balance Formatted: ${ethers.utils.formatEtherbalance)}`);\n+    console.log(`\\n Balance Formatted: ${ethers.utils.formatEther(balance)}`);\n \n }\n \n main();\n"
+                },
+                {
+                    "date": 1705401323863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,4 +32,5 @@\n \n }\n \n main();\n+ \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1705400148605,
+            "name": "Commit-0",
+            "content": "const {ethers}  = require(\"ethers\");\n"
+        }
+    ]
+}
