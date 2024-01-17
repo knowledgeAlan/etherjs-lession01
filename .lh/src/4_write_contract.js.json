@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/4_write_contract.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1705486724166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705486801500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,5 @@\n const {ethers} = require(\"ethers\");\n \n+const INFRUA_ID = \"\";\n+\n+const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705486811215,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n const {ethers} = require(\"ethers\");\n \n-const INFRUA_ID = \"\";\n+const INFRURA_ID = \"\";\n \n const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705486842260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n const {ethers} = require(\"ethers\");\n \n-const INFRURA_ID = \"\";\n+const INFRURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n\\ No newline at end of file\n-const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+\n+\n+const account1 = \"account1\";\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705487278172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,29 @@\n+const {ethers} = require(\"ethers\");\n+\n+const INFRURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+\n+const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+\n+\n+const account1 = \"account1\";\n+const account2 = \"account2\";\n+\n+const privateKey1 = \"\";\n+\n+const wallet =  new  ethers.Wallet(privateKey1,provider);\n+\n+const ERC20_ABI = [\n+    \"function balanceOf(address) view returns (uint)\",\n+    \"function transfer(address to,uint  amount) returns (bool) \",\n+];\n+\n+\n+const address = \"\";\n+const contract = new ethers.Contract(address,ERC20_ABI,provider);\n+\n+const main = async ()=>{\n+    const balance = await contract.balanceOf(account1);\n+\n+    console.log(`\\n Reading from ${address}`);\n+    console.log(`Balance of sender : ${balance}\\n`);\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705487368654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,13 +25,10 @@\n     const balance = await contract.balanceOf(account1);\n \n     console.log(`\\n Reading from ${address}`);\n     console.log(`Balance of sender : ${balance}\\n`);\n-}\n-const {ethers} = require(\"ethers\");\n \n-const INFRURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+    const contractWithWallet = contract.connect(wallet);\n \n-\n\\ No newline at end of file\n-const account1 = \"account1\";\n+    const tx = await contractWithWallet.transfer(account2,balance);\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705487452293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,5 +30,15 @@\n \n     const contractWithWallet = contract.connect(wallet);\n \n     const tx = await contractWithWallet.transfer(account2,balance);\n+\n+    await tx.wait();\n+\n+    console.log(tx);\n+\n+    const balanceOfSender = await contract.balanceOf(account1);\n+    const balanceOfReciever = await contract.balanceOf(account2);\n+\n+\n+    \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705487509358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,6 +39,7 @@\n     const balanceOfSender = await contract.balanceOf(account1);\n     const balanceOfReciever = await contract.balanceOf(account2);\n \n \n-    \n+    console.log(`\\n Balance of sender : ${balanceOfSender}`);\n+    console.log(`\\n Balance of reciever : ${balanceOfReciever}`);\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705487577866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \n const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n-const account1 = \"account1\";\n-const account2 = \"account2\";\n+const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n+const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n \n const privateKey1 = \"\";\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n"
+                },
+                {
+                    "date": 1705487968821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \n const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n-const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n-const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n+const account1 = \"\";\n+const account2 = \"\";\n \n const privateKey1 = \"\";\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n"
+                }
+            ],
+            "date": 1705486724166,
+            "name": "Commit-0",
+            "content": "const {ethers} = require(\"ethers\");\n\n"
+        }
+    ]
+}
