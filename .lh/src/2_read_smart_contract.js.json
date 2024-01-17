@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1705400148605,
@@ -88,6 +88,10 @@
                 {
                     "date": 1705401323863,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,4 +32,5 @@\n \n }\n \n main();\n+ \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705486652898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n const {ethers}  = require(\"ethers\");\n \n-const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+const INFURA_ID=\"\";\n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const ERC20_ABI =[\n     \"function name() view returns (string)\",\n"
                 }
             ],
             "date": 1705400148605,

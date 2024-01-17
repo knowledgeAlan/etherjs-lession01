@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1705401550839,
@@ -48,6 +48,26 @@
                 {
                     "date": 1705402735504,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,6 +34,9 @@\n \n     const senderBalanceAfter = await provider.getBalance(account1);\n     const recieverBalanceAfter = await provider.getBalance(account2);\n \n-    \n+\n+    console.log(`\\n Sender balance after : ${ethers.utils.formatEther(senderBalanceAfter)}`);\n+    console.log(`Reciever balance after : ${ethers.utils.formatEther(recieverBalanceAfter)} \\n`);\n+\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705485172388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n const {ethers} = require(\"ethers\");\n \n const INFURA_ID =\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+// const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n-const account1 = \"account1\";\n-const account2 = \"account2\";\n+const provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n+const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n+const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n+\n const privateKey1 = \"\";\n const wallet = new ethers.wallet(privateKey1,provider);\n \n \n"
+                },
+                {
+                    "date": 1705485563313,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,10 @@\n \n const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n \n-const privateKey1 = \"\";\n-const wallet = new ethers.wallet(privateKey1,provider);\n+const privateKey1 = \"ff5157b93d87ab217998a9fa59f791963efbbd56138e00115a467d752c23852f\";\n+const wallet = new ethers.Wallet(privateKey1,provider);\n \n \n const main = async ()=>{\n \n"
+                },
+                {
+                    "date": 1705485631625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,5 +40,7 @@\n \n     console.log(`\\n Sender balance after : ${ethers.utils.formatEther(senderBalanceAfter)}`);\n     console.log(`Reciever balance after : ${ethers.utils.formatEther(recieverBalanceAfter)} \\n`);\n \n-}\n\\ No newline at end of file\n+}\n+\n+main();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705485669651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n \n \n     const tx = await wallet.sendTransaction({\n             to:account2,\n-            value: ethers.utils.parseEther(\"0.25\")\n+            value: ethers.utils.parseEther(\"0.001\")\n     });\n \n \n     await tx.wait();\n"
+                },
+                {
+                    "date": 1705486652896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n const {ethers} = require(\"ethers\");\n \n-const INFURA_ID =\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+const INFURA_ID =\"\";\n \n // const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n const provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n-const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n-const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n+const account1 = \"\";\n+const account2 = \"\";\n \n-const privateKey1 = \"ff5157b93d87ab217998a9fa59f791963efbbd56138e00115a467d752c23852f\";\n+const privateKey1 = \"\";\n const wallet = new ethers.Wallet(privateKey1,provider);\n \n \n const main = async ()=>{\n"
                 }
             ],
             "date": 1705401550839,
