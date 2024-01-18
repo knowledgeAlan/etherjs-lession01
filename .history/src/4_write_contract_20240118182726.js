@@ -13,9 +13,10 @@ const privateKey1 = "ff5157b93d87ab217998a9fa59f791963efbbd56138e00115a467d752c2
 const wallet =  new  ethers.Wallet(privateKey1,provider);
 
 const ERC20_ABI = [
-    "function balanceOf(address) view returns (uint)",
-    "function transfer(address to, uint amount) returns (bool)",
+    "function balanceOf(address) view  returns (uint256)",
+    "function transfer(address to,uint  amount) returns (bool) ",
 ];
+
 
 const address = "0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844";
 const contract = new ethers.Contract(address,ERC20_ABI,provider);

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/5_contract_event_stream.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1705573184575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705573563266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,29 @@\n const {ethers}  = require(\"ethers\");\n \n-const INFURA_ID = \"INFURA_ID\";\n+const INFURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.providers.JsonRpProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+const provider = new  ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+\n+\n+const ERC20_ABI = [\n+    \"function name() view returns (string)\",\n+    \"function symbol() view returns (string)\",\n+    \"function totalSupply () view returns (uint256)\",\n+    \"function balanceOf(address) view returns (uint)\",\n+    \"event Transfer(address indexed from ,address indexed to,uint amount) \",\n+];\n+\n+\n+const address = \"0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844\";\n+const contract = new ethers.contract(address,ERC20_ABI,provider);\n+\n+\n+const main = async ()=>{\n+    const block = await provider.getBlockNumber();\n+\n+\n+    const transferEvents = await contract.queryFilter(\"Transfer\",block-1,block);\n+    console.log(transferEvents);\n+}\n+\n+main();\n"
+                },
+                {
+                    "date": 1705573593627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n ];\n \n \n const address = \"0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844\";\n-const contract = new ethers.contract(address,ERC20_ABI,provider);\n+const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n \n const main = async ()=>{\n     const block = await provider.getBlockNumber();\n"
+                }
+            ],
+            "date": 1705573184575,
+            "name": "Commit-0",
+            "content": "const {ethers}  = require(\"ethers\");\n\nconst INFURA_ID = \"INFURA_ID\";\n\nconst provider = new ethers.providers.JsonRpProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n"
+        }
+    ]
+}

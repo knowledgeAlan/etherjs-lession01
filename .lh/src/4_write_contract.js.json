@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1705486724166,
@@ -44,6 +44,38 @@
                 {
                     "date": 1705487968821,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \n const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n-const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n-const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n+const account1 = \"\";\n+const account2 = \"\";\n \n const privateKey1 = \"\";\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n"
+                },
+                {
+                    "date": 1705568443729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,5 +41,7 @@\n \n \n     console.log(`\\n Balance of sender : ${balanceOfSender}`);\n     console.log(`\\n Balance of reciever : ${balanceOfReciever}`);\n-}\n\\ No newline at end of file\n+}\n+\n+main();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705570484495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,15 @@\n const {ethers} = require(\"ethers\");\n \n-const INFRURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+const INFURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n-const account1 = \"\";\n-const account2 = \"\";\n+const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n+const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n \n-const privateKey1 = \"\";\n+const privateKey1 = \"ff5157b93d87ab217998a9fa59f791963efbbd56138e00115a467d752c23852f\";\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n \n const ERC20_ABI = [\n@@ -17,9 +17,9 @@\n     \"function transfer(address to,uint  amount) returns (bool) \",\n ];\n \n \n-const address = \"\";\n+const address = \"0xC86d4c512e9533e855A681d678659965Dd8E1241\";\n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n const main = async ()=>{\n     const balance = await contract.balanceOf(account1);\n"
+                },
+                {
+                    "date": 1705570500822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const {ethers} = require(\"ethers\");\n \n const INFURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.ProvidersJsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.Providers.JsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n"
+                },
+                {
+                    "date": 1705570520945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n const {ethers} = require(\"ethers\");\n \n const INFURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n \n-const provider = new ethers.Providers.JsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n const account1 = \"0x332417FBb78e0B6EcC806548A89b6a949F29220B\";\n const account2 = \"0x683Af4fb837fF9BAFb3f21E3db3b80BcebbAfb64\";\n"
+                },
+                {
+                    "date": 1705570692002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n \n const ERC20_ABI = [\n-    \"function balanceOf(address) view returns (uint)\",\n+    \"function balanceOf(address account) view  returns (uint256)\",\n     \"function transfer(address to,uint  amount) returns (bool) \",\n ];\n \n \n"
+                },
+                {
+                    "date": 1705570728107,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n \n const ERC20_ABI = [\n-    \"function balanceOf(address account) view  returns (uint256)\",\n+    \"function balanceOf(address) view  returns (uint256)\",\n     \"function transfer(address to,uint  amount) returns (bool) \",\n ];\n \n \n"
+                },
+                {
+                    "date": 1705573646696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     \"function transfer(address to,uint  amount) returns (bool) \",\n ];\n \n \n-const address = \"0xC86d4c512e9533e855A681d678659965Dd8E1241\";\n+const address = \"0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844\";\n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n const main = async ()=>{\n     const balance = await contract.balanceOf(account1);\n"
+                },
+                {
+                    "date": 1705573689990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,12 @@\n \n const wallet =  new  ethers.Wallet(privateKey1,provider);\n \n const ERC20_ABI = [\n-    \"function balanceOf(address) view  returns (uint256)\",\n-    \"function transfer(address to,uint  amount) returns (bool) \",\n+    \"function balanceOf(address) view returns (uint)\",\n+    \"function transfer(address to, uint amount) returns (bool)\",\n ];\n \n-\n const address = \"0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844\";\n const contract = new ethers.Contract(address,ERC20_ABI,provider);\n \n const main = async ()=>{\n"
                 }
             ],
             "date": 1705486724166,

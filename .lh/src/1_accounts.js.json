@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1705317462621,
@@ -40,6 +40,10 @@
                 {
                     "date": 1705485794601,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n // const {ethers} = require(\"ethers\");\n \n-// const INFURA_ID=\"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+// const INFURA_ID=\"\";\n \n \n const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n"
+                },
+                {
+                    "date": 1705570307032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n // const INFURA_ID=\"\";\n \n \n-const provider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n+const provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n // const provider = new ethers.BrowserProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);\n \n \n"
                 }
             ],
             "date": 1705317462621,

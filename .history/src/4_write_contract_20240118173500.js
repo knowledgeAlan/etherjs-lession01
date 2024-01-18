@@ -2,7 +2,7 @@ const {ethers} = require("ethers");
 
 const INFURA_ID = "6a10c6a6a3b44e1e8f2c4671e7a34319";
 
-const provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);
+const provider = new ethers.Providers.JsonProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);
 
 
 const account1 = "0x332417FBb78e0B6EcC806548A89b6a949F29220B";
@@ -14,10 +14,11 @@ const wallet =  new  ethers.Wallet(privateKey1,provider);
 
 const ERC20_ABI = [
     "function balanceOf(address) view returns (uint)",
-    "function transfer(address to, uint amount) returns (bool)",
+    "function transfer(address to,uint  amount) returns (bool) ",
 ];
 
-const address = "0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844";
+
+const address = "0xC86d4c512e9533e855A681d678659965Dd8E1241";
 const contract = new ethers.Contract(address,ERC20_ABI,provider);
 
 const main = async ()=>{
