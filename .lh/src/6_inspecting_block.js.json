@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/6_inspecting_block.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1705574633761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1705575114918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,7 @@\n-const {ethers} = require(\"ethers\");\n\\ No newline at end of file\n+const {ethers} = require(\"ethers\");\n+\n+const INFURA_ID = \"6a10c6a6a3b44e1e8f2c4671e7a34319\";\n+\n+const provider = new  ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n+\n+\n"
+                },
+                {
+                    "date": 1705575368505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,17 @@\n \n const provider = new  ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);\n \n \n+const main = async ()=>{\n+    const block = await provider.getBlockNumber();\n+\n+    console.log(`\\n Block Number: ${block}\\n`);\n+\n+    const blockInfo = await provider.getBlock(block);\n+\n+    console.log(blockInfo);\n+\n+    const {transactons} = await provider.getBlockWithTransactions(block);\n+\n+    console.log(`\\nLogging first transaction in block :\\n`);\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705575389453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,7 @@\n \n     const {transactons} = await provider.getBlockWithTransactions(block);\n \n     console.log(`\\nLogging first transaction in block :\\n`);\n+\n+    console.log(transactons[0])\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705575414887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,9 @@\n     const {transactons} = await provider.getBlockWithTransactions(block);\n \n     console.log(`\\nLogging first transaction in block :\\n`);\n \n-    console.log(transactons[0])\n-}\n\\ No newline at end of file\n+    console.log(transactons[0]);\n+\n+}\n+\n+main();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705575456039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     const {transactons} = await provider.getBlockWithTransactions(block);\n \n     console.log(`\\nLogging first transaction in block :\\n`);\n \n-    console.log(transactons[0]);\n+    console.log(transactons);\n \n }\n \n main();\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1705575519003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     const blockInfo = await provider.getBlock(block);\n \n     console.log(blockInfo);\n \n-    const {transactons} = await provider.getBlockWithTransactions(block);\n+    const {transactions} = await provider.getBlockWithTransactions(block);\n \n     console.log(`\\nLogging first transaction in block :\\n`);\n \n     console.log(transactons);\n"
+                },
+                {
+                    "date": 1705575528923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     const {transactions} = await provider.getBlockWithTransactions(block);\n \n     console.log(`\\nLogging first transaction in block :\\n`);\n \n-    console.log(transactons);\n+    console.log(transactions[0]);\n \n }\n \n main();\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1705574633761,
+            "name": "Commit-0",
+            "content": "const {ethers} = require(\"ethers\");"
+        }
+    ]
+}
