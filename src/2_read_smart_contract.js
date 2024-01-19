@@ -1,6 +1,6 @@
 const {ethers}  = require("ethers");
 
-const INFURA_ID="6a10c6a6a3b44e1e8f2c4671e7a34319";
+const INFURA_ID="";
 const provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${INFURA_ID}`);
 
 const ERC20_ABI =[
@@ -10,7 +10,7 @@ const ERC20_ABI =[
     "function balanceOf(address) view returns (uint)",
 ];
 
-const address = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+const address = "";
 
 const contract = new ethers.Contract(address,ERC20_ABI,provider);
 
